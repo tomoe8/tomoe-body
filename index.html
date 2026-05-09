@@ -695,6 +695,105 @@ footer p { font-size:0.75rem; color:rgba(253,250,246,0.3); line-height:1.8; }
 }
 .insta-btn:hover { background:var(--green); transform:translateY(-2px); }
 
+
+/* ── GOOGLE MAP ── */
+.loc-map-wrap {
+  position:relative; overflow:hidden; min-height:280px;
+  background:var(--green-bg);
+}
+.loc-map-wrap iframe {
+  width:100%; height:100%; min-height:280px;
+  border:none; display:block;
+  filter:saturate(0.85) brightness(1.02);
+}
+.loc-map-overlay {
+  position:absolute; bottom:0; left:0; right:0;
+  background:linear-gradient(to top, rgba(61,107,61,0.85) 0%, transparent 100%);
+  padding:1.5rem; pointer-events:none;
+}
+.loc-map-overlay span {
+  font-family:'DM Serif Display',serif; font-size:1.4rem; font-style:italic;
+  color:var(--white); display:block;
+}
+.loc-map-overlay small { font-size:0.75rem; color:rgba(255,255,255,0.7); }
+.loc-map-btn-wrap {
+  padding:1rem 1.5rem; background:var(--green-dk);
+  display:flex; gap:0.8rem; flex-wrap:wrap; align-items:center;
+}
+.loc-map-link {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase;
+  color:rgba(255,255,255,0.85); text-decoration:none;
+  transition:color 0.2s;
+}
+.loc-map-link:hover { color:var(--white); }
+
+/* ── GOOGLE REVIEW BAND ── */
+.review-band {
+  background:var(--green-dk); padding:3.5rem 2rem; text-align:center;
+}
+.review-band h3 {
+  font-family:'DM Serif Display',serif; font-size:1.5rem; color:var(--white);
+  margin-bottom:0.5rem;
+}
+.review-band p { font-size:0.9rem; color:rgba(255,255,255,0.7); margin-bottom:0.4rem; }
+.review-band .jp { font-family:'Noto Serif JP',serif; font-size:0.82rem; color:rgba(255,255,255,0.5); margin-bottom:1.8rem; }
+.review-stars { font-size:1.6rem; display:block; margin-bottom:0.8rem; letter-spacing:0.15em; }
+.review-btn {
+  display:inline-flex; align-items:center; gap:0.5rem;
+  background:var(--white); color:var(--green-dk);
+  padding:0.85rem 1.8rem; text-decoration:none;
+  font-size:0.74rem; letter-spacing:0.2em; text-transform:uppercase;
+  font-family:'DM Sans',sans-serif; font-weight:600;
+  transition:all 0.25s; margin:0.4rem;
+}
+.review-btn:hover { background:var(--green-bg); transform:translateY(-2px); }
+.review-btn.wa {
+  background:rgba(255,255,255,0.12); color:var(--white);
+  border:1px solid rgba(255,255,255,0.3);
+}
+.review-btn.wa:hover { background:rgba(255,255,255,0.22); }
+
+/* ── SHARE SECTION ── */
+.share-strip {
+  background:var(--blush); padding:2.5rem 2rem; text-align:center;
+  border-top:1px solid var(--sand);
+}
+.share-strip p {
+  font-size:0.92rem; color:var(--body); margin-bottom:0.3rem;
+}
+.share-strip .jp { font-family:'Noto Serif JP',serif; font-size:0.82rem; color:var(--mid); margin-bottom:1.2rem; }
+.share-btns { display:flex; gap:0.8rem; justify-content:center; flex-wrap:wrap; }
+.share-btn {
+  display:inline-flex; align-items:center; gap:0.4rem;
+  padding:0.6rem 1.2rem; border:1.5px solid var(--border); background:var(--white);
+  font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--body); text-decoration:none; cursor:pointer;
+  font-family:'DM Sans',sans-serif; transition:all 0.2s;
+}
+.share-btn:hover { border-color:var(--green); color:var(--green); transform:translateY(-1px); }
+
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float {
+  position:fixed; bottom:1.5rem; right:1.5rem; z-index:400;
+  width:52px; height:52px; border-radius:50%;
+  background:#25D366; color:var(--white);
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; text-decoration:none;
+  box-shadow:0 4px 16px rgba(37,211,102,0.4);
+  transition:transform 0.25s, box-shadow 0.25s;
+}
+.wa-float:hover { transform:scale(1.1); box-shadow:0 6px 24px rgba(37,211,102,0.5); }
+.wa-float-tooltip {
+  position:fixed; bottom:1.5rem; right:4.8rem; z-index:400;
+  background:var(--ink); color:var(--white);
+  font-size:0.72rem; padding:0.4rem 0.8rem; white-space:nowrap;
+  opacity:0; pointer-events:none; transition:opacity 0.2s;
+}
+.wa-float:hover + .wa-float-tooltip,
+.wa-float-tooltip:hover { opacity:1; }
+
 /* ── REVEAL ── */
 .rv { opacity:0; transform:translateY(20px); transition:opacity 0.85s ease, transform 0.85s ease; }
 .rv.on { opacity:1; transform:translateY(0); }
@@ -984,9 +1083,23 @@ footer p { font-size:0.75rem; color:rgba(253,250,246,0.3); line-height:1.8; }
         <div class="loc-row">🕐 <span>By appointment only · 完全予約制</span></div>
         <div style="margin-top:2rem"><a href="https://forms.gle/RUGzY7315WQZn42h8" target="_blank" rel="noopener" class="btn btn-fill">Book at Sevenoaks</a></div>
       </div>
-      <div class="loc-visual">
-        <span class="loc-visual-name">Sevenoaks</span>
-        <p class="loc-visual-info">Kent, South East England<br>30 min · London Bridge</p>
+      <div class="loc-map-wrap">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d19898.5!2d0.18!3d51.27!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47df4aaaaaaaaaa%3A0x0!2sSevenoaks%2C+Kent%2C+UK!5e0!3m2!1sen!2suk!4v1710000000000"
+          loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade"
+          title="Téate Alignment — Sevenoaks, Kent"></iframe>
+        <div class="loc-map-overlay">
+          <span>Sevenoaks</span>
+          <small>Kent, South East England</small>
+        </div>
+        <div class="loc-map-btn-wrap">
+          <a href="https://maps.app.goo.gl/jGdjqy2PBoRB3YrG8" target="_blank" rel="noopener" class="loc-map-link">
+            📍 Open in Google Maps
+          </a>
+          <a href="https://maps.app.goo.gl/jGdjqy2PBoRB3YrG8" target="_blank" rel="noopener" class="loc-map-link">
+            ⭐ Leave a review
+          </a>
+        </div>
       </div>
     </div>
     <div class="loc-mini rv">
@@ -996,10 +1109,46 @@ footer p { font-size:0.75rem; color:rgba(253,250,246,0.3); line-height:1.8; }
         <p>Sessions occasionally available in Central London. Easy by Tube. Please ask for availability.<br>
         <span style="font-family:'Noto Serif JP',serif;font-size:0.78rem;color:var(--mid)">セントラルロンドンでも不定期でご予約いただけます。</span></p>
       </div>
-      <a href="#booking" class="btn btn-outline">Ask about London</a>
+      <a href="https://forms.gle/RUGzY7315WQZn42h8" target="_blank" rel="noopener" class="btn btn-outline">Ask about London</a>
     </div>
   </div>
 </section>
+
+<!-- GOOGLE REVIEW BAND -->
+<div class="review-band">
+  <div style="max-width:640px;margin:0 auto;">
+    <span class="review-stars">⭐⭐⭐⭐⭐</span>
+    <h3>Enjoyed your session? · ご来院ありがとうございました</h3>
+    <p>A Google review takes two minutes — and helps others in Sevenoaks find this practice.</p>
+    <p class="jp">Googleレビューを書いていただけると、近くの方にも届きやすくなります。2分でできます。</p>
+    <div>
+      <a href="https://maps.app.goo.gl/jGdjqy2PBoRB3YrG8" target="_blank" rel="noopener" class="review-btn">
+        ⭐ Write a Google Review
+      </a>
+      <a href="https://wa.me/447564784536?text=Hi%20Tomoe%2C%20I%27d%20like%20to%20enquire%20about%20a%20session%20at%20T%C3%A9ate%20Alignment.%20Please%20let%20me%20know%20availability." 
+         target="_blank" rel="noopener" class="review-btn wa">
+        💬 Message on WhatsApp · LINEまたはWhatsApp
+      </a>
+    </div>
+    <p style="margin-top:1.5rem;font-size:0.78rem;color:rgba(255,255,255,0.4);">
+      Or share this page with someone who might benefit 👇<br>
+      <span style="font-family:'Noto Serif JP',serif;font-size:0.75rem;">気になる方にシェアしてください。</span>
+    </p>
+  </div>
+</div>
+
+<!-- SHARE STRIP -->
+<div class="share-strip">
+  <p>Know someone who might benefit? Share this page — it only takes a second.</p>
+  <p class="jp">お友達やご家族に、ぜひこのページをシェアしてください。</p>
+  <div class="share-btns">
+    <a class="share-btn" onclick="shareWA()" href="#">💬 WhatsApp</a>
+    <a class="share-btn" onclick="shareLine()" href="#">🟢 LINE</a>
+    <a class="share-btn" onclick="copyLink()" href="#" id="copy-btn">🔗 Copy Link</a>
+    <a class="share-btn" href="mailto:?subject=Téate%20Alignment%20—%20Body%20Alignment%20in%20Sevenoaks&body=I%20thought%20you%20might%20be%20interested%20in%20this%3A%20https%3A%2F%2Ftomoe-body.vercel.app">📧 Email</a>
+  </div>
+</div>
+
 
 <!-- ABOUT -->
 <section class="about" id="about">
@@ -1387,6 +1536,30 @@ async function handleSubmit(e) {
     alert('Something went wrong. Please email info.tomoe.seki@gmail.com directly.');
   }
 }
+
+function shareWA() {
+  event.preventDefault();
+  window.open('https://wa.me/?text=' + encodeURIComponent('I thought you might find this interesting — Japanese body alignment in Sevenoaks 🌿 https://tomoe-body.vercel.app'), '_blank');
+}
+function shareLine() {
+  event.preventDefault();
+  window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent('https://tomoe-body.vercel.app'), '_blank');
+}
+function copyLink() {
+  event.preventDefault();
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    const btn = document.getElementById('copy-btn');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = '🔗 Copy Link', 2000);
+  });
+}
+
 </script>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/447564784536?text=Hi%20Tomoe%2C%20I%27d%20like%20to%20enquire%20about%20a%20session%20at%20T%C3%A9ate%20Alignment.%20Please%20let%20me%20know%20availability." 
+   target="_blank" rel="noopener" class="wa-float" title="Chat on WhatsApp · お問い合わせ">💬</a>
+<span class="wa-float-tooltip">Chat on WhatsApp · お問い合わせ</span>
+
 </body>
 </html>
